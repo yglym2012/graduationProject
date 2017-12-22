@@ -1,0 +1,112 @@
+extends ../layout
+block content
+  body
+    .container.mt-4
+      .columns
+        // 项目统计
+        .column.one-fourth
+          .border.rounded-1.p-3.mb-3
+            h2.f5.mb-2
+              | 项目统计
+              - var waitP = 0
+              - var passP = 0
+              - var failP = 0
+              - var totalP = 0
+              each item in projects
+                - totalP ++
+                if (item.audit.auditStatus == 2)
+                  -  waitP ++
+                if (item.audit.auditStatus == 1)
+                  -  passP ++
+                if (item.audit.auditStatus == 0)
+                  -  failP ++
+            ul.filter-list.small(data-pjax='')
+              li
+                span.bar(style='width: 75%;')
+                a.filter-item(href='#')
+                  // 紫色箭头，表示待审核
+                  svg.octicon.octicon-git-pull-request.merged.d-inline-block.mr-3(aria-hidden='true', height='20', version='1.1', viewbox='0 0 12 16', width='20')
+                    path(fill-rule='evenodd', d='M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0 0 10 15a1.993 1.993 0 0 0 1-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v6.56A1.993 1.993 0 0 0 2 15a1.993 1.993 0 0 0 1-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z')
+                  span.count #{waitP}
+                  |                         待审批项目数
+              li
+                span.bar(style='width: 25%;')
+                a.filter-item(href='#')
+                  // 绿色感叹号，表示审核通过
+                  svg.octicon.octicon-issue-opened.open.d-inline-block.mr-3(aria-hidden='true', height='20', version='1.1', viewbox='0 0 14 16', width='20')
+                    path(fill-rule='evenodd', d='M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z')
+                  span.count #{passP}
+                  |                         审批通过项目数
+              li
+                span.bar(style='width: 75%;')
+                a.filter-item(href='#')
+                  // 红色感叹号，表示审核未通过
+                  svg.octicon.octicon-issue-closed.closed.d-inline-block.mr-3(aria-hidden='true', height='20', version='1.1', viewbox='0 0 16 16', width='20')
+                    path(fill-rule='evenodd', d='M7 10h2v2H7v-2zm2-6H7v5h2V4zm1.5 1.5l-1 1L12 9l4-4.5-1-1L12 7l-1.5-1.5zM8 13.7A5.71 5.71 0 0 1 2.3 8c0-3.14 2.56-5.7 5.7-5.7 1.83 0 3.45.88 4.5 2.2l.92-.92A6.947 6.947 0 0 0 8 1C4.14 1 1 4.14 1 8s3.14 7 7 7 7-3.14 7-7l-1.52 1.52c-.66 2.41-2.86 4.19-5.48 4.19v-.01z')
+                  span.count #{failP}
+                  |                         审核未通过项目数
+        // 项目列表
+        .column.three-fourths.codesearch-results
+          .pl-2
+            // 列表头
+            .d-flex.flex-justify-between.border-bottom.pb-3
+              h3 #{totalP} 个项目
+              .select-menu.js-menu-container.js-select-menu.float-right.select-menu-modal-right
+                button.btn.btn-sm.select-menu-button.js-menu-target(type='button', aria-haspopup='true', aria-expanded='false')
+                  i 排序：
+                  span.js-select-button 申请时间
+            each item in projects              
+              // 项目单元
+              .issue-list-item.col-12.py-4
+                if (item.audit.auditStatus == 2)
+                  // 紫色箭头，表示待审核
+                  svg.octicon.octicon-git-pull-request.merged.d-inline-block.mr-3(aria-hidden='true', height='35', version='1.1', viewbox='0 0 12 16', width='35')
+                    path(fill-rule='evenodd', d='M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0 0 10 15a1.993 1.993 0 0 0 1-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v6.56A1.993 1.993 0 0 0 2 15a1.993 1.993 0 0 0 1-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z')
+                if (item.audit.auditStatus == 1)
+                  // 绿色感叹号，表示审核通过
+                  svg.octicon.octicon-issue-opened.open.d-inline-block.mr-3(aria-hidden='true', height='35', version='1.1', viewbox='0 0 14 16', width='35')
+                    path(fill-rule='evenodd', d='M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z')
+                if (item.audit.auditStatus == 0)
+                  // 红色感叹号，表示审核未通过
+                  svg.octicon.octicon-issue-closed.closed.d-inline-block.mr-3(aria-hidden='true', height='35', version='1.1', viewbox='0 0 16 16', width='35')
+                    path(fill-rule='evenodd', d='M7 10h2v2H7v-2zm2-6H7v5h2V4zm1.5 1.5l-1 1L12 9l4-4.5-1-1L12 7l-1.5-1.5zM8 13.7A5.71 5.71 0 0 1 2.3 8c0-3.14 2.56-5.7 5.7-5.7 1.83 0 3.45.88 4.5 2.2l.92-.92A6.947 6.947 0 0 0 8 1C4.14 1 1 4.14 1 8s3.14 7 7 7 7-3.14 7-7l-1.52 1.52c-.66 2.41-2.86 4.19-5.48 4.19v-.01z')
+                .d-inline-block.col-10.v-align-top.public
+                  // 项目名称
+                  h3.text-normal.pb-1
+                    if (item.audit.auditStatus == 2)
+                      a(href='/admin/project/audit/#{item._id}', title='goto audit')
+                        | #{item.name}
+                    else
+                      a(href='/project/#{item._id}', title='goto detail')
+                        | #{item.name}
+                  ul.list-style-none.text-small.text-gray
+                    li.d-inline-block.mr-3
+                      // 县
+                      a.muted-link(href='#')
+                        | #{item.responsibleDepartment}
+                      span.ml-3
+                        // 项目实施单位
+                        a.muted-link(href='#', title='nitesh7sid')
+                          | #{item.implementationAgency}
+                      span.ml-3
+                        // 项目实施单位
+                        a.muted-link(href='#', title='nitesh7sid')
+                          | #{moment(item.createAt).format('MM/DD/YYYY')}
+                      span.ml-3
+                        //- // 项目编号
+                        //- a.muted-link.float-right(href='/#', title='nitesh7sid')
+                        //-   | ##{item._id} 
+                    li.d-inline-block.mr-3
+                        // 项目介绍
+                        a.muted-link.float-right(href='#', title='nitesh7sid')
+                          | #{item.abstract}                   
+            // 页码链接
+            .paginate-container
+              .pagination(data-pjax='true')
+                span.previous_page.disabled Previous
+                em.current
+                  | 1
+                a(rel='next', href='#')
+                  | 2
+                a.next_page(rel='next', href='#')
+                  | Next

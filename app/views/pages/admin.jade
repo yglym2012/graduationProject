@@ -1,0 +1,112 @@
+extends ../layout
+
+block content
+  body
+    div(role='main')
+      // Show steps for the signup flow
+      .setup-wrapper
+        .setup-header.setup-org
+          ol.steps
+            li.current
+              svg.octicon.octicon-check(aria-hidden='true', height='32', version='1.1', viewbox='0 0 12 16', width='24')
+                path(fill-rule='evenodd', d='M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z')
+              strong.step Step 1
+              |               项目申请
+            li.step-dashboard
+              svg.octicon.octicon-versions(aria-hidden='true', height='32', version='1.1', viewbox='0 0 14 16', width='28')
+                path(fill-rule='evenodd', d='M13 3H7c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zm-1 8H8V5h4v6zM4 4h1v1H4v6h1v1H4c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1zM1 5h1v1H1v4h1v1H1c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1z')
+              strong.step Step 2:
+              |               项目审批
+            li.step-dashboard
+              svg.octicon.octicon-gear(aria-hidden='true', height='32', version='1.1', viewbox='0 0 14 16', width='28')
+                path(fill-rule='evenodd', d='M14 8.77v-1.6l-1.94-.64-.45-1.09.88-1.84-1.13-1.13-1.81.91-1.09-.45-.69-1.92h-1.6l-.63 1.94-1.11.45-1.84-.88-1.13 1.13.91 1.81-.45 1.09L0 7.23v1.59l1.94.64.45 1.09-.88 1.84 1.13 1.13 1.81-.91 1.09.45.69 1.92h1.59l.63-1.94 1.11-.45 1.84.88 1.13-1.13-.92-1.81.47-1.09L14 8.75v.02zM7 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z')
+              strong.step Step 3:
+              |               资金拨付
+      .setup-wrapper
+        // 录入项目信息
+        .page-content.container.clearfix
+          // 悬浮框
+          .col-3.float-left.pr-4(role='navigation')
+            nav.menu(data-pjax='')
+              h3.menu-heading
+                | 信息名录
+              a.js-selected-navigation-item.selected.menu-item(href='#') 项目名称
+              a.js-selected-navigation-item.menu-item(href='#') 项目类型
+              a.js-selected-navigation-item.menu-item(href='#') 县责任部门
+              a.js-selected-navigation-item.menu-item(href='#') 项目建设预算
+              a.js-selected-navigation-item.menu-item(href='#') 项目介绍
+              a.js-selected-navigation-item.menu-item(href='#') 项目承接单位
+              a.js-selected-navigation-item.menu-item(href='#') 项目承接单位资质介绍
+              a.js-selected-navigation-item.menu-item(href='#') 项目开始时间
+              a.js-selected-navigation-item.menu-item(href='#') 项目完工时间
+            nav.menu
+              a.menu-item(href='/settings/developers')
+                | Developer settings
+          // 文本输入框
+          form.columns.js-uploadable-container.js-upload-avatar-image.is-default(accept-charset='UTF-8', action='/admin/project', method='post')
+            //- input(type="hidden", name="project[_id]", value="#{project._id}")
+            // 文本框
+            .column.two-thirds  
+              dl.form-group
+                dt
+                  label(for='inputName') 项目名称
+                dd
+                  input#inputName.form-control(name='project[name]', size='30', type='text', value='')
+              // 下拉框
+              dl.form-group
+                dt
+                  label(for='inputType') 项目类型
+                dd
+                  select#inputType.form-select.select(name='project[type]')
+                    option(value='') 从下拉菜单中选择项目类型
+                    option(value='公路交通') 公路交通
+                    option(value='水利') 水利
+                    option(value='产业') 产业
+                    option(value='其他') 其他
+                  p.note
+                    | 如果不清楚项目类型的具体含义，请咨询有关部门，电话： 
+                    a(href='#') 0635-6545 5455
+              dl.form-group
+                dt
+                  label(for='inputResponsibleDepartment') 县责任部门
+                dd
+                  input#inputResponsibleDepartment.form-control(name='project[responsibleDepartment]', size='30', type='text', value='')
+              dl.form-group
+                dt
+                  label(for='inputBudget') 项目建设预算
+                dd
+                  input#inputBudget.form-control(name='project[budget]', size='30', type='text', value='')
+                  p.note 预算计量单位：人民币/元
+              // 大输入框
+              dl.form-group
+                dt
+                  label(for='inputAbstract') 项目介绍
+                dd.user-profile-bio-field-container.js-suggester-container.js-length-limited-input-container
+                  textarea#inputAbstract.form-control.user-profile-bio-field.js-suggester-field.js-length-limited-input(cols='40', data-input-max-length='160', name='project[abstract]', placeholder='100字以内', rows='20')
+                  p.note 请根据项目书中指定条目填写
+              dl.form-group
+                dt
+                  label(for='inputImplementationAgency') 项目承接单位
+                dd
+                  input#inputImplementationAgency.form-control(name='project[implementationAgency]', size='30', type='text', value='')
+              // 大输入框
+              dl.form-group
+                dt
+                  label(for='inputAgencyAbstract') 项目承接单位资质介绍
+                dd.user-profile-bio-field-container.js-suggester-container.js-length-limited-input-container
+                  textarea#inputAgencyAbstract.form-control.user-profile-bio-field.js-suggester-field.js-length-limited-input(cols='40', data-input-max-length='160', name='project[agencyAbstract]', placeholder='100字以内', rows='20')
+                  p.note 请根据项目书中指定条目填写
+              dl.form-group
+                dt
+                  label(for='inputBeginTime') 项目开始时间
+                dd
+                  input#inputBeginTime.form-control(name='project[beginTime]', size='30', type='text', value='')
+                  p.note 请按公历日期填写，格式YYYY/MM/DD，举例：2017/10/01
+              dl.form-group
+                dt
+                  label(for='inputEndTime') 项目完工时间
+                dd
+                  input#inputEndTime.form-control(name='project[endTime]', size='30', type='text', value='')
+                  p.note 请按公历日期填写，格式YYYY/MM/DD，举例：2018/01/01
+              p
+                button.btn.btn-primary(type='submit') 申报

@@ -1,0 +1,31 @@
+include ../includes/head
+
+block content
+  body.logged-out.env-production.page-responsive.min-width-0.session-authentication
+      .position-relative.js-header-wrapper
+        #js-pjax-loader-bar.pjax-loader-bar
+          .progress
+        .header.header-logged-out.width-full.pt-5.pb-4(role='banner')
+          .container.clearfix.width-full.text-center
+            img(src='./images/love.png')
+      div(role='main')
+        #js-pjax-container(data-pjax-container='')
+          #login.auth-form.px-3
+            .setup-header.setup-org
+              h1 脱贫攻坚，精准扶贫
+              p.lead 不忘初心，砥砺前行
+            form(accept-charset='UTF-8', action='/user/signin', method='post')
+              .auth-form-body.mt-3
+                label(for='signinName')
+                  | 登录账号
+                input#signinName.form-control.input-block(name='user[name]', tabindex='1', type='text')
+                label(for='signinPassword')
+                  | 登录密码 
+                  a.label-link(href='#') 忘记密码？
+                input#signinPassword.form-control.form-control.input-block(name='user[password]', tabindex='2', type='password')
+                input.btn.btn-primary.btn-block(data-disable-with='Signing in…', name='commit', tabindex='3', type='submit', value='登录')
+            p.create-account-callout.mt-3
+              a(href='/signup', data-ga-click='Sign in, switch to sign up') 创建新账号
+
+
+
