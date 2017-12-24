@@ -33,4 +33,5 @@ module.exports = function(app) {
   app.get('/admin/project/appropriation/:id', User.signinRequired, User.adminRequired, Project.appropriation)
   app.get('/admin/project/list', User.signinRequired, User.adminRequired, Project.list)
   app.post('/admin/project', User.signinRequired, User.adminRequired, Project.save)
+  app.post('/admin/project/check', User.signinRequired, User.adminRequired, Project.check)
 }

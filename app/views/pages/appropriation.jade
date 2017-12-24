@@ -49,32 +49,32 @@ block content
           .settings-next
             .Subhead
               h2.Subhead-heading 资金拨付
-          form#new_saved_reply.new_saved_reply(accept-charset='UTF-8', action='/admin/project', method='post')
+          form#new_saved_reply.new_saved_reply(accept-charset='UTF-8', action='/admin/project/check', method='post')
             input(type="hidden", name="project[_id]", value="#{project._id}")
             dl.form
               dl.form-group
                 dt
                   label(for='inputSerialNumber') 转账流水号
                 dd
-                  input#inputSerialNumber.input-block.form-control(type='text', name='', value='')
+                  input#inputSerialNumber.input-block.form-control(type='text', name='serialNumber', value='')
             dl.form
               dl.form-group
                 dt
                   label(for='inputAAccount') 拨款银行账户
                 dd
-                  input#inputAAccount.input-block.form-control(type='text', name='', value='')
+                  input#inputAAccount.input-block.form-control(type='text', name='Aaccount', value='')
             dl.form
               dl.form-group
                 dt
                   label(for='inputBAccount') 收款银行账户
                 dd
-                  input#inputBAccount.input-block.form-control(type='text', name='', value='')
+                  input#inputBAccount.input-block.form-control(type='text', name='Baccount', value='')
             dl.form
               dl.form-group
                 dt
                   label(for='inputAmount') 转账金额
                 dd
-                  input#inputAmount.input-block.form-control(type='text', name='', value='')
+                  input#inputAmount.input-block.form-control(type='text', name='amount', value='')
             p
               button.btn.mr-2(type='submit') Upload Information
               span

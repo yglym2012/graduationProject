@@ -1,5 +1,14 @@
 var mongoose = require('mongoose');
 
+var orgAttrabutesObj = {
+    account: String,
+    amount: Number,
+    actualAmount: Number,
+    deadline: Date,
+    actualTimeOfRemit: Date,
+    serialNumber: String,
+    sequenceNumber: Number
+}
 var ProjectSchema = new mongoose.Schema({
     name: String,//项目名称
     type: String,//项目类型
@@ -36,60 +45,24 @@ var ProjectSchema = new mongoose.Schema({
             type: String,
             default: null
         }
-    }/*,
+    },
     //资金拨付
     fundAppropriation: {
         //省财政厅
-        departmentOfFinance: {
-            accout: {
-                type: String,
-                default: "6228480402564890000"
-            },
-            amount: Number,
-            deadline: Date,
-            actualTimeOfRemit: Date
-        },
+        departmentOfFinance: orgAttrabutesObj,
         //银行
-        commercialBank: {
-            accout: {
-                type: String,
-                default: "6228480402564890001"
-            },
-            amount: Number,
-            deadline: Date,
-            actualTimeOfRemit: Date
-        },
+        commercialBank: orgAttrabutesObj,
         //有限合伙公司
-        spv: {
-            accout: {
-                type: String,
-                default: "6228480402564890002"
-            },
-            amount: Number,
-            deadline: Date,
-            actualTimeOfRemit: Date
-        },
+        spv: orgAttrabutesObj,
         //县财政局
-        bureauOfFinance: {
-            accout: {
-                type: String,
-                default: "6228480402564890003"
-            },
-            amount: Number,
-            deadline: Date,
-            actualTimeOfRemit: Date
-        },
+        bureauOfFinance: orgAttrabutesObj,
         //县基金公司
-        fundCompany: {
-            accout: {
-                type: String,
-                default: "6228480402564890004"
-            },
-            amount: Number,
-            deadline: Date,
-            actualTimeOfRemit: Date
+        fundCompany: orgAttrabutesObj,
+        currentSequenceNumber: {
+            type: Number,
+            default: 0
         }
-    }*/
+    }
 });
 
 /*// ProjectSchema.pre 表示每次存储数据之前都先调用这个方法
