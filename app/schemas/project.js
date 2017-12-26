@@ -60,7 +60,7 @@ var ProjectSchema = new mongoose.Schema({
         fundCompany: orgAttrabutesObj,
         currentSequenceNumber: {
             type: Number,
-            default: 0
+            default: 1
         }
     }
 });

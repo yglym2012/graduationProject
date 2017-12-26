@@ -1,4 +1,13 @@
-
-d = Date.now()
-
-console.log(d + 5*1000*60*60*24)
+var t1 = Date.now()
+console.log(t1)
+var t2 = new Date()
+console.log(t2)
+console.log(typeof t1)
+console.log(typeof t2)
+var t3 = t2.setDate(t2.getDate() + 1)
+console.log(t3)
+console.log(typeof t3)
+var t4 Date
+t4 = t2.toUTCString()
+console.log(t4)
+console.log(typeof t4)

@@ -61,7 +61,6 @@ exports.appropriation = function(req, res) {
 // admin post movie
 exports.save = function(req, res) {
   var id = req.body.project._id
-  var operationId = req.body.project.operationId
   var projectObj = req.body.project
   var _project
 
@@ -142,6 +141,51 @@ exports.save = function(req, res) {
   }
 }
 
+//审核之后，更新信息
+exports.updateAfterAudit = function(req, res) {
+  var id = req.body.project._id
+  var projectObj = req.body.project
+  var _project
+
+  Project.findById(id, function(err, project) {
+    if (err) {
+      console.log(err)
+    }
+
+    //将projectObj对象中的所有属性拷贝到project对象中，并返回project对象
+    _project = _.extend(project, projectObj)
+    //更新各个机构的deadline
+    var t1 = new Date()
+    //县财政局T+1
+    t1.setDate(t1.getDate() + 1)
+    _project.fundAppropriation.bureauOfFinance.deadline = t1
+    //省财政厅T+2
+    var t2 = new Date()
+    t2.setDate(t2.getDate() + 2)
+    _project.fundAppropriation.departmentOfFinance.deadline = t2
+    //商业银行T+3
+    var t3 = new Date()
+    t3.setDate(t3.getDate() + 3)
+    _project.fundAppropriation.commercialBank.deadline = t3
+    //SPVT+4
+    var t4 = new Date()
+    t4.setDate(t4.getDate() + 4)
+    _project.fundAppropriation.spv.deadline = t4
+    //县脱贫基金公司T+5
+    var t5 = new Date()
+    t5.setDate(t5.getDate() + 5)
+    _project.fundAppropriation.fundCompany.deadline = t5
+    
+    _project.save(function(err, project) {
+      if (err) {
+        console.log(err)
+      }
+
+      res.redirect('/project/' + project._id)
+    })
+  })
+}
+
 // 对账
 exports.check = function(req, res) {
   //先检查权限，是不是该他拨款
@@ -152,8 +196,6 @@ exports.check = function(req, res) {
 
   var actualAmount = req.body.amount
   var serialNumber = req.body.serialNumber
-  console.log(actualAmount)
-  console.log(serialNumber)
 
   //先查出要拨款的项目的数据对象
   Project.findById(id, function(err, project) {
@@ -162,18 +204,17 @@ exports.check = function(req, res) {
     }
     //检查权限
     /*if (_user.role !== project.fundAppropriation.currentSequenceNumber) {*/
-    if (_user.role > 0) {
+    if (_user.role < 0) {
       res.redirect('/')
     }
 
-    switch(project.fundAppropriation.currentSequenceNumber)
+
+    switch(_user.role)
     {
       case 100:
-        console.log('jindao 100 le 1!!!!!!!!!!!!!!!!!!!!!!!')
         project.fundAppropriation.bureauOfFinance.actualAmount = actualAmount
         project.fundAppropriation.bureauOfFinance.actualTimeOfRemit =Date.now()
         project.fundAppropriation.bureauOfFinance.serialNumber = serialNumber
-        console.log('project.fundAppropriation.bureauOfFinance.actualTimeOfRemit')
         break;
       case 2:
         project.fundAppropriation.departmentOfFinance.actualAmount = actualAmount
@@ -197,6 +238,7 @@ exports.check = function(req, res) {
         break;
     }
 
+    project.fundAppropriation.currentSequenceNumber++
     
     project.save(function(err, project) {
       if (err) {

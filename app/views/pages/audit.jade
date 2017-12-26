@@ -35,7 +35,7 @@ block content
           .settings-next
             .Subhead
               h2.Subhead-heading 项目审批信息
-          form.new_saved_reply(accept-charset='UTF-8', action='/admin/project', method='post')
+          form.new_saved_reply(accept-charset='UTF-8', action='/admin/project/updateAfterAudit', method='post')
             input(type="hidden", name="project[_id]", value="#{project._id}")
             dl.form
               dl.form-group

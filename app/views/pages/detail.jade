@@ -91,34 +91,42 @@ block content
                 a.d-block(href='#') 已拨款
               else
                 a.d-block(href='#') 未拨款
+              a.d-block(href='#') deadline:#{project.fundAppropriation.bureauOfFinance.deadline}
             li.mb-4
               cite.alt-text-small 省财政厅：
               if (project.fundAppropriation.currentSequenceNumber > 2)
                 a.d-block(href='#') 已拨款
               else
                 a.d-block(href='#') 未拨款
+              a.d-block(href='#') deadline:#{project.fundAppropriation.departmentOfFinance.deadline}
             li.mb-4
               cite.alt-text-small 商业银行：
               if (project.fundAppropriation.currentSequenceNumber > 3)
                 a.d-block(href='#') 已拨款
               else
                 a.d-block(href='#') 未拨款
+              a.d-block(href='#') deadline:#{project.fundAppropriation.commercialBank.deadline}
             li.mb-4
               cite.alt-text-small 有限合伙公司：
               if (project.fundAppropriation.currentSequenceNumber > 4)
                 a.d-block(href='#') 已拨款
               else
                 a.d-block(href='#') 未拨款
+              a.d-block(href='#') deadline:#{project.fundAppropriation.spv.deadline}
             li.mb-4
               cite.alt-text-small 县扶贫基金公司：
               if (project.fundAppropriation.currentSequenceNumber > 5)
                 a.d-block(href='#') 已拨款
               else
                 a.d-block(href='#') 未拨款
+              a.d-block(href='#') deadline:#{project.fundAppropriation.fundCompany.deadline}
             li.mb-4
               cite.alt-text-small test：
                 a.d-block(href='#') #{project.fundAppropriation.spv.account}
                 a.d-block(href='#') #{project.fundAppropriation.spv.amount}
                 a.d-block(href='#') #{project.fundAppropriation.spv.deadline}
                 a.d-block(href='#') #{project.fundAppropriation.spv.sequenceNumber}
+                a.d-block(href='#') #{project.createAt}
+                a.d-block(href='#') #{t}
+                a.d-block(href='#') #{t1}
           
