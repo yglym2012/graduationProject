@@ -1,18 +1,15 @@
 include ../includes/head
-
-block content
   body.logged-out.env-production.page-responsive.min-width-0.session-authentication
       .position-relative.js-header-wrapper
         #js-pjax-loader-bar.pjax-loader-bar
           .progress
         .header.header-logged-out.width-full.pt-5.pb-4(role='banner')
-          .container.clearfix.width-full.text-center
-            img(src='./images/love.png')
       div(role='main')
+
         #js-pjax-container(data-pjax-container='')
           #login.auth-form.px-3
+            h1 脱贫攻坚，精准扶贫
             .setup-header.setup-org
-              h1 脱贫攻坚，精准扶贫
               p.lead 不忘初心，砥砺前行
             form(accept-charset='UTF-8', action='/user/signin', method='post')
               .auth-form-body.mt-3

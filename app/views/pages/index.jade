@@ -1,13 +1,70 @@
-extends ../layout
+extends ../layout-index
 block content
-  .container
-    //- .row
-    //-   each item in projects
-    //-     .col-md-2
-    //-       .thumbnail
-    //-         a(href="/movie/#{item._id}")
-    //-           img(src="#{item.poster}", alt="#{item.title}")
-    //-         .caption
-    //-           h3 #{item.title}
-    //-           p: a.btn.btn-primary(href="/movie/#{item._id}", role="button") 观看预告片
-    h3 I can do all things!
+    body.lang-cn
+        .publish-body
+          .banner-other.banner-other-wankebi
+            .banner-txt
+              h3 基于区块链的精准扶贫应用管理平台
+              p 不忘初心 砥砺前行
+            a.banner-link-block(href='#')
+          .publish-tab-box
+            .publish-tab
+              .publish-tab-list
+                a(href='/admin/project/new')
+                  i.icon.iconfont.icon-download
+                  | 项目申请
+              .publish-tab-list
+                a(href='#')
+                  i.icon.iconfont.icon-intro
+                  | 项目审批
+              .publish-tab-list
+                a(href='#')
+                  i.icon.iconfont.icon-ssh
+                  | 资金拨付
+              .publish-tab-list
+                a(href='/admin/project/list')
+                  i.icon.iconfont.icon-home
+                  | 项目查询
+          .publish-mainer
+            #app
+              div(data-reactid='.0')
+                p.publish-date(data-reactid='.0.0')
+                  span(data-reactid='.0.0.0') 数据统计时间：
+                  span.publish-date-span(data-reactid='.0.0.1') 2018年02月20日
+                .publish-section.publish-section-date(data-reactid='.0.1')
+                  .publish-box-num.clear(data-reactid='.0.1.0')
+                    .publish-box-num-row.publish-box-num-row-left(data-reactid='.0.1.0.0')
+                      .publish-box-num-row-bg(data-reactid='.0.1.0.0.0')
+                        h3(data-reactid='.0.1.0.0.0.0') 扶贫区块链运行情况
+                        .publish-num-table(data-reactid='.0.1.0.0.0.1')
+                          .publish-num-cell(data-reactid='.0.1.0.0.0.1.0')
+                            p(data-reactid='.0.1.0.0.0.1.0.0')
+                              b(data-reactid='.0.1.0.0.0.1.0.0.0') 215
+                            p(data-reactid='.0.1.0.0.0.1.0.1') 区块高度
+                          .publish-num-cell(data-reactid='.0.1.0.0.0.1.1')
+                            p(data-reactid='.0.1.0.0.0.1.1.0')
+                              b(data-reactid='.0.1.0.0.0.1.1.0.0') 7
+                            p(data-reactid='.0.1.0.0.0.1.1.1') 智能合约个数
+                      .publish-box-num-row-shadow(data-reactid='.0.1.0.0.1')
+                      i.icon-row1(data-reactid='.0.1.0.0.2')
+                    .publish-box-num-row.publish-box-num-row-right(data-reactid='.0.1.0.1')
+                      .publish-box-num-row-bg(data-reactid='.0.1.0.1.0')
+                        h3(data-reactid='.0.1.0.1.0.0') 扶贫资金情况
+                        .publish-num-table.publish-num-table2(data-reactid='.0.1.0.1.0.1')
+                          .publish-num-cell(data-reactid='.0.1.0.1.0.1.0')
+                            p(data-reactid='.0.1.0.1.0.1.0.0')
+                              b(data-reactid='.0.1.0.1.0.1.0.0.0') 2223
+                              i(data-reactid='.0.1.0.1.0.1.0.0.1') 万元
+                            p(data-reactid='.0.1.0.1.0.1.0.1') 累计资金投放
+                          .publish-num-cell(data-reactid='.0.1.0.1.0.1.1')
+                            p(data-reactid='.0.1.0.1.0.1.1.0')
+                              b(data-reactid='.0.1.0.1.0.1.1.0.0') 16
+                              i(data-reactid='.0.1.0.1.0.1.1.0.1') 个
+                            p(data-reactid='.0.1.0.1.0.1.1.1') 帮扶乡镇个数
+                          .publish-num-cell(data-reactid='.0.1.0.1.0.1.2')
+                            p(data-reactid='.0.1.0.1.0.1.2.0')
+                              b(data-reactid='.0.1.0.1.0.1.2.0.0') 1048
+                              i(data-reactid='.0.1.0.1.0.1.2.0.1') 小时
+                            p(data-reactid='.0.1.0.1.0.1.2.1') 安全运行时间
+                      .publish-box-num-row-shadow(data-reactid='.0.1.0.1.1')
+                      i.icon-row2(data-reactid='.0.1.0.1.2')
