@@ -24,7 +24,7 @@ block content
               |               资金拨付
       .setup-wrapper
         // 录入项目信息
-        .page-content.container.clearfix
+        .page-content.clearfix
           // 悬浮框
           .col-3.float-left.pr-4(role='navigation')
             nav.menu(data-pjax='')
@@ -39,9 +39,6 @@ block content
               a.js-selected-navigation-item.menu-item(href='#') 项目承接单位资质介绍
               a.js-selected-navigation-item.menu-item(href='#') 项目开始时间
               a.js-selected-navigation-item.menu-item(href='#') 项目完工时间
-            nav.menu
-              a.menu-item(href='/settings/developers')
-                | Developer settings
           // 文本输入框
           form.columns.js-uploadable-container.js-upload-avatar-image.is-default(accept-charset='UTF-8', action='/admin/project', method='post')
             //- input(type="hidden", name="project[_id]", value="#{project._id}")
