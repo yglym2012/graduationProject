@@ -1,1 +1,1 @@
-mongod --dbpath=D:\data\db
+mongod --dbpath=E:\data\db

@@ -11,7 +11,7 @@ block content
               - var passP = 0
               - var failP = 0
               - var totalP = 0
-              each item in projects
+              each item in allProjects
                 - totalP ++
                 if (item.audit.auditStatus == 2)
                   -  waitP ++
@@ -103,9 +103,15 @@ block content
             .paginate-container
               .pagination(data-pjax='true')
                 span.previous_page.disabled Previous
-                em.current
-                  | 1
-                a(rel='next', href='#')
-                  | 2
+                - for (var i = 0; i < totalPage; i++) {
+                  - if (currentPage == (i + 1)) {
+                      em.current
+                        | #{currentPage}
+                  - }
+                  - else {
+                      a(rel='next', href='/admin/project/list?page=#{i}')
+                        | #{i + 1}
+                  - }
+                - }
                 a.next_page(rel='next', href='#')
                   | Next

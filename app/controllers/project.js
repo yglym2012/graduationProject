@@ -252,14 +252,20 @@ exports.check = function(req, res) {
 
 // list page
 exports.list = function(req, res) {
+  var page = parseInt(req.query.page, 10)
+  var count = 5
+  var index = page * count
   Project.fetch(function(err, projects){
     if (err) {
       console.log(err)
     }
-
+    var showedProjects = projects.slice(index, index + count)
     res.render('list', {
       title: 'ilove 列表页',
-      projects: projects
+      currentPage: (page + 1),
+      totalPage: Math.ceil(projects.length / count),
+      projects: showedProjects,
+      allProjects: projects
     })
   })
 }
