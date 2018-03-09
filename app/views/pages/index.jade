@@ -30,7 +30,7 @@ block content
               div(data-reactid='.0')
                 p.publish-date(data-reactid='.0.0')
                   span(data-reactid='.0.0.0') 数据统计时间：
-                  span.publish-date-span(data-reactid='.0.0.1') 2018年02月20日
+                  span.publish-date-span(data-reactid='.0.0.1') #{time}
                 .publish-section.publish-section-date(data-reactid='.0.1')
                   .publish-box-num.clear(data-reactid='.0.1.0')
                     .publish-box-num-row.publish-box-num-row-left(data-reactid='.0.1.0.0')
@@ -39,11 +39,13 @@ block content
                         .publish-num-table(data-reactid='.0.1.0.0.0.1')
                           .publish-num-cell(data-reactid='.0.1.0.0.0.1.0')
                             p(data-reactid='.0.1.0.0.0.1.0.0')
-                              b(data-reactid='.0.1.0.0.0.1.0.0.0') 215
+                              b(data-reactid='.0.1.0.0.0.1.0.0.0') #{blockHeight}
+                              i(data-reactid='.0.1.0.1.0.1.0.0.1') 块
                             p(data-reactid='.0.1.0.0.0.1.0.1') 区块高度
                           .publish-num-cell(data-reactid='.0.1.0.0.0.1.1')
                             p(data-reactid='.0.1.0.0.0.1.1.0')
-                              b(data-reactid='.0.1.0.0.0.1.1.0.0') 7
+                              b(data-reactid='.0.1.0.0.0.1.1.0.0') #{ccNumber}
+                              i(data-reactid='.0.1.0.1.0.1.0.0.1') 个
                             p(data-reactid='.0.1.0.0.0.1.1.1') 智能合约个数
                       .publish-box-num-row-shadow(data-reactid='.0.1.0.0.1')
                       i.icon-row1(data-reactid='.0.1.0.0.2')
@@ -63,7 +65,7 @@ block content
                             p(data-reactid='.0.1.0.1.0.1.1.1') 帮扶乡镇个数
                           .publish-num-cell(data-reactid='.0.1.0.1.0.1.2')
                             p(data-reactid='.0.1.0.1.0.1.2.0')
-                              b(data-reactid='.0.1.0.1.0.1.2.0.0') 1048
+                              b(data-reactid='.0.1.0.1.0.1.2.0.0') #{healthTime}
                               i(data-reactid='.0.1.0.1.0.1.2.0.1') 小时
                             p(data-reactid='.0.1.0.1.0.1.2.1') 安全运行时间
                       .publish-box-num-row-shadow(data-reactid='.0.1.0.1.1')

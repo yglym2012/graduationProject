@@ -58,7 +58,7 @@ exports.appropriation = function(req, res) {
   })
 }
 
-// admin post movie
+// admin post 
 exports.save = function(req, res) {
   var id = req.body.project._id
   var projectObj = req.body.project
